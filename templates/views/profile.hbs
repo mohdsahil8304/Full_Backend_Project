@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="/js/script.js"></script>
+</head>
+<body>
+{{>navbarloguser}}
+    {{>headerlinks}}
+    <form action="profile"  method="GET" enctype="multipart/form-data" class="formData" id="profile">
+    <div class="container" >
+        {{!-- {{#if user}} --}}
+        <div class = "set-inside-div ">
+            <label  for="full-name"> Full Name *</label>
+           <p id="name" class="userDetails">{{user.name}}</p>
+        </div>  
+        <div class = "set-inside-div">
+            <label for="email">Email *</label>
+            <p id="email" class="userDetails">{{user.email}}</p>
+        </div>
+        <div class = "set-inside-div">
+            <label for="phone">phone *</label>
+            <p id="phone" class="userDetails">{{user.phone}}</p>
+        </div>
+        <div class = "set-inside-div">
+            <label for="company-name">Company Name *</label>
+            <p id="companyName" class="userDetails">{{user.companyName}}</p>
+        </div>
+        <div class = "set-inside-div" >
+            <label for="utility-bill">Profile Image *</label>
+           <p id="filename" class="userDetails">{{user.filename}}  <a method = "GET" href="/download/profile/{{user.filename}}">
+    <img
+      src="https://o.remove.bg/downloads/bdf983b9-c78f-43a8-9ff4-c63828796afe/images-removebg-preview.png"
+      onclick="ga('send', 'event', 'Getting started', 'Download', 'Download source');"
+      style="width:25px;height:25px;"
+    />
+  </a></p>
+        </div>
+        <div class = "set-inside-div">
+            <label for="userLoginId">User Login Id *</label>
+           <p id="userName" class="userDetails">{{user.username}}</p>
+           </div>
+        {{!-- <div class = "set-inside-div">
+            <label for="select-where">Password *</label>
+            <p id="password" class="userDetails">{{user.password}}</p>
+        </div> --}}
+        {{!-- <button type="button" class="profilebtn"><a href="/login" >Edit</a></button> --}}
+        {{!-- {{/if}} --}}
+    </div>
+</form>
+<div class="alert-container">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+ If You Want to any Change in your details.<strong>Please Click Hare!</strong> <a href="/userauth" class="alert-link">click hare</a> 
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+</div>
+
+ {{#if message}}
+     <div class="mt-4">
+      <h4 class="alert alert-denger">{{message}}</h4>
+      </div>
+      {{/if}}
+
+</body>
+</html>

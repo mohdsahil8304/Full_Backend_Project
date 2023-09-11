@@ -1,0 +1,77 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="/js/script.js"></script>
+  {{>navbarlogadmin}}
+</head>
+
+<body>
+  {{>headerlinks}}
+</body>
+
+<main action="deshboard" method="GET">
+     <div class="table-responsive small">
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">User Name</th>
+              <th scope="col">User Email</th>
+              <th scope="col">User Phone No</th>
+              <th scope="col">User Company Name</th>
+              <th scope="col">User Image</th>
+              <th scope="col">Username</th>
+              <th scope="col">User Password</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#if users.length}}
+            {{#each users}}
+            <tr>
+              <td>{{ @index}}</td>
+              <td>{{this.name}}</td>
+              <td>{{this.email}}</td>
+              <td>{{this.phone}}</td>
+              <td>{{this.companyName}}
+              </td>
+              <td>{{this.filename}}
+              
+  <a method = "GET" href="/download/{{this.filename}}">
+    <img
+      src="https://o.remove.bg/downloads/bdf983b9-c78f-43a8-9ff4-c63828796afe/images-removebg-preview.png"
+      onclick="ga('send', 'event', 'Getting started', 'Download', 'Download source');"
+      style="width:25px;height:25px;"
+    />
+  </a>
+              </td>
+              <td>{{this.username}}</td>
+              <td>{{this.password}}</td>
+              <td><button type="button" class="btn btn-outline-info"><a href="/update/{{this._id}}" class="nav-link px-2 ">Update</a></button></td>   
+              <td><button type="button" class="btn btn-outline-primary" ><a href="/delete/{{this._id}}" class="nav-link px-2">Delete</a></td>
+              
+            </tr>
+          
+            {{/each}}
+            {{else}}
+             <tr>
+        <td colspan="7">No Data Found</td>
+           </tr>
+           {{/if}}
+          </tbody>
+        </table>
+        <div class="text-center">
+        <button type="button" class="btn btn-secondary btn-lg"><a href="/adduser" class="nav-link px-2">Add User</a></button>
+        </div>
+      </div>
+</main>
+ 
+  {{#if message}}
+  <div class="mt-4">
+    <h4 class="alert alert-denger">{{message}}</h4>
+  </div>
+  {{/if}}
+</body>
+
+</html>

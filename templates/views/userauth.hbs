@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+{{!-- <head>
+  
+</head> --}}
+<body >
+{{>navbar}}
+
+    {{>headerlinks}}
+    <form action="/userauth" method="POST" class="formData" id="forgetPassDiv">
+    <div class="container">
+        <div class="form-floating">
+  <input name="email"
+            id="email"
+            value=""
+            type="email"
+            placeholder="me@example.com"
+            class="form-control"
+            required >
+  <label for="email">Email</label>
+</div> 
+        <button type="submit" class="btn btn-primary btn-reset">Send Otp</button>
+        </div>
+</form>
+ {{#if message}}
+     <div class="mt-4">
+      <h4 class="alert alert-denger">{{message}}</h4>
+      </div>
+      {{/if}}
+
+</body>
+</html>

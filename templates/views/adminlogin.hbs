@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="/js/script.js"></script>
+  {{>navbar}}
+</head>
+
+<body>
+  {{>headerlinks}}
+
+  <form action="/adminlogin" method="POST" class="formData" id="loginDiv">
+    <div class="container">
+      <div class="form-floating">
+        <input name="adminUsername" id="adminUsername" value="" type="text" placeholder="Enter username" class="form-control"
+          required>
+        <label for="adminUsername">Admin Username</label>
+      </div>
+      <div class="form-floating">
+        <input name="password" id="password" value="" type="password" placeholder="password" class="form-control"
+          required>
+        <label for="password">Password</label>
+      </div>
+      <div class="set-btn-Link">
+        <a href="/forgetpassword" class="forget-link">Forget your password ?</a>
+        <button type="submit" class="btn btn-primary btn-login">Login</button>
+      </div>
+    </div>
+  </form>
+  {{#if message}}
+  <div class="mt-4">
+    <h4 class="alert alert-denger">{{message}}</h4>
+  </div>
+  {{/if}}
+</body>
+</html>
