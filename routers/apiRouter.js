@@ -51,8 +51,8 @@ async function sendMail({ to, subject, html, from = process.env.EMAIL_FROM }) {
     host: "smtp.ethereal.email",
     port: 587,
     auth: {
-      user: "christina58@ethereal.email",
-      pass: "eFkeBQfcs7ADNdNqTc",
+      user: "winnifred.hermiston@ethereal.email",
+      pass: "tugaHG32Re5kWgAEhS",
     },
   });
 
@@ -83,6 +83,7 @@ async function sendUserNamePassEmail(email, username, password, origin) {
 router.post(
   "/register",
   upload.single("filename"),
+  auth,
   encoder,
   async (req, res) => {
     try {
@@ -162,17 +163,13 @@ router.get("/download/profile/:filename", auth, async (req, res, next) => {
     console.log(result.filename);
 
     const x =
-      "/Projects/Authentication And Admin Module/documents/" + result.filename;
+      "/Projects/Full_Backend_Project-main/documents/" + result.filename;
     res.download(x); // video[0].file.path is the absolute path to the file
     const resp = await axios.get("http://localhost:3000/download/");
     console.log(resp);
-    return res.redirect(
-      "/profile",
-      {
-        message: "file downloaded successfully",
-      },
-      201
-    );
+    return res.status(201).render("profile", {
+      message: "file downloaded successfully",
+    });
   } catch (e) {
     console.log(e);
   }
@@ -239,8 +236,8 @@ async function sendMail({ to, subject, html, from = process.env.EMAIL_FROM }) {
     host: "smtp.ethereal.email",
     port: 587,
     auth: {
-      user: "christina58@ethereal.email",
-      pass: "eFkeBQfcs7ADNdNqTc",
+      user: "winnifred.hermiston@ethereal.email",
+      pass: "tugaHG32Re5kWgAEhS",
     },
   });
 
@@ -386,6 +383,10 @@ router.post("/resetpassword", auth, encoder, async (req, res) => {
   }
 });
 
+//////////////////////// '''' Send Updatable Data by user to admin ''''  ////////////////////////
+
+////////////// Send Email For Otp When user wants to change some details    ////////////////////
+
 async function sendMail({ to, subject, html, from = process.env.EMAIL_FROM }) {
   let testAccount = await nodemailer.createTestAccount();
 
@@ -393,13 +394,14 @@ async function sendMail({ to, subject, html, from = process.env.EMAIL_FROM }) {
     host: "smtp.ethereal.email",
     port: 587,
     auth: {
-      user: "christina58@ethereal.email",
-      pass: "eFkeBQfcs7ADNdNqTc",
+      user: "winnifred.hermiston@ethereal.email",
+      pass: "tugaHG32Re5kWgAEhS",
     },
   });
   await transporter.sendMail({ from, to, subject, html });
   console.log("email sent sucessfully");
 }
+
 async function sendOtpEmail(email, random) {
   let message;
   message = `<p>Here is your Otp. After entering otp and Username you can send your updatable details to the Admin .</p>
@@ -416,6 +418,8 @@ async function sendOtpEmail(email, random) {
   console.log("email sent sucessfully");
   //   return username;
 }
+
+////////////// Create Otp for validation    ////////////////////
 
 router.post("/userauth", auth, async (req, res) => {
   try {
@@ -464,6 +468,8 @@ router.post("/userauth", auth, async (req, res) => {
   }
 });
 
+/////////////////    Otp verifation when user sumbit otp   ////////////////////
+
 router.post("/otp", auth, async (req, res) => {
   try {
     console.log(req.body.username);
@@ -485,13 +491,9 @@ router.post("/otp", auth, async (req, res) => {
         console.log(session.userid);
         await Otp.deleteOne({ email: results.email });
         console.log("Otp delete successfully");
-        res.redirect(
-          "/updateuser",
-          {
-            message: "Otp verify successfully",
-          },
-          201
-        );
+        return res.status(201).render("updateuser", {
+          message: "Otp verify successfully",
+        });
       } else {
         res.render("otp", {
           message: "please enter valid Otp",
@@ -505,6 +507,8 @@ router.post("/otp", auth, async (req, res) => {
   }
 });
 
+////////////// Send Email with user details, When user send udatable details to admin ///////////////
+
 async function sendMail({ to, subject, html, from = process.env.EMAIL_FROM }) {
   let testAccount = await nodemailer.createTestAccount();
 
@@ -512,8 +516,8 @@ async function sendMail({ to, subject, html, from = process.env.EMAIL_FROM }) {
     host: "smtp.ethereal.email",
     port: 587,
     auth: {
-      user: "christina58@ethereal.email",
-      pass: "eFkeBQfcs7ADNdNqTc",
+      user: "winnifred.hermiston@ethereal.email",
+      pass: "tugaHG32Re5kWgAEhS",
     },
   });
   await transporter.sendMail({ from, to, subject, html });
@@ -543,6 +547,8 @@ async function sendAdminEmail(
   console.log("email sent sucessfully");
   //   return username;
 }
+
+////////////// Send Updatable Data by user to admin  ////////////////////
 
 router.post(
   "/updateuser",
@@ -599,20 +605,16 @@ router.post(
         );
       }
 
-      res.redirect(
-        "/login",
-        {
-          message: "Updatable Details are Send Successfully to Admin",
-        },
-        201
-      );
+      return res.status(201).render("login", {
+        message: "Updatable Details are Send Successfully to Admin",
+      });
     } catch (e) {
       console.log(e);
     }
   }
 );
 
-////////////////////////// '''' Admin accessible Routes ''''' ///////////////////////
+////////////////////////// '''' Admin accessible Routes ''''' ////////////////////////
 
 ///////////// File Download route ///////////////////
 
@@ -623,17 +625,13 @@ router.get("/download/:filename", admin_auth, async (req, res, next) => {
     console.log(result.filename);
 
     const x =
-      "/Projects/Authentication And Admin Module/documents/" + result.filename;
+      "/Projects/Full_Backend_Project-main/documents/" + result.filename;
     res.download(x); // video[0].file.path is the absolute path to the file
     const resp = await axios.get("http://localhost:3000/download/");
     console.log(resp);
-    return res.redirect(
-      "/profile",
-      {
-        message: "file downloaded successfully",
-      },
-      201
-    );
+    return res.status(201).render("deshboard", {
+      message: "file downloaded successfully",
+    });
   } catch (e) {
     console.log(e);
   }
@@ -641,7 +639,7 @@ router.get("/download/:filename", admin_auth, async (req, res, next) => {
 
 ////////////////////    CRUD OPERATION BY ADMIN    ///////////////////
 
-///////////// Add New user in deshbord table //////////////                   CCCCCCCCCCCCCCC
+///////////// Add New user in deshbord table //////////////////////////////////////
 
 router.post(
   "/adduser",
@@ -681,13 +679,9 @@ router.post(
         const createUser = await user.save();
         console.log(createUser);
 
-        res.redirect(
-          "/deshboard",
-          {
-            message: "user added Successfully",
-          },
-          201
-        );
+        return res.status(201).render("deshboard", {
+          message: "user added Successfully",
+        });
       }
     } catch (e) {
       console.log(e);
@@ -695,7 +689,7 @@ router.post(
   }
 );
 
-///////////////// Search user in Deshbord ////////////                    RRRRRRRRRRRRRRRRR
+///////////////// Search user in Deshbord //////////////////////////////////
 
 router.post("/deshboard", admin_auth, async (req, res) => {
   console.log(req.body.search);
@@ -721,7 +715,7 @@ router.post("/deshboard", admin_auth, async (req, res) => {
   res.render("deshboard", { users: result });
 });
 
-///// For update ////                                                 UUUUUUUUUUUUUUUUUUUUUUUUU
+///// For update ////
 ///////////// Get update user page where admin edit the updatable values ///////////////
 
 router.get("/update/:id", admin_auth, async (req, res, next) => {
@@ -867,13 +861,9 @@ router.post(
           console.log(result);
         }
       }
-      return res.redirect(
-        "/deshboard",
-        {
-          message: "user updated successfully",
-        },
-        201
-      );
+      return res.status(201).render("deshboard", {
+        message: "user updated successfully",
+      });
     } catch (e) {
       console.log(e);
       // res.status(500).send(e)
@@ -895,13 +885,9 @@ router.get("/delete/:id", admin_auth, async (req, res) => {
     } else {
       // return res.status(200).send({ message: "user deleted successfully" });
       console.log("user deleted successfully");
-      return res.redirect(
-        "/deshboard",
-        {
-          message: "user deleted successfully",
-        },
-        201
-      );
+      return res.status(201).render("deshboard", {
+        message: "user deleted successfully",
+      });
     }
   } catch (e) {
     console.log(e);
