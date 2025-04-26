@@ -1,5 +1,12 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/developmentProject").then(() =>{
+const path = require("path");
+const dotenv = require("dotenv");
+dotenv.config({ path: "./.env" });
+
+mongoose.connect(process.env.MONGODB_URI,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }).then(() =>{
     console.log("Connection is successful")
 }).catch((e) =>{
     console.log("No connection");
