@@ -513,7 +513,7 @@ async function sendMail({ to, subject, html, from = process.env.EMAIL_FROM }) {
   let testAccount = await nodemailer.createTestAccount();
 
   const transporter = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST
+    host: process.env.EMAIL_HOST,
     port: process.env.EMAIL_PORT,
     auth: {
       user: process.env.USER,
