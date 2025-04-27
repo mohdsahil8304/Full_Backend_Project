@@ -365,3 +365,109 @@ padding: 15px;
       align-self: center;
     }
   }
+
+
+
+  /* Profile outer form styling */
+#profile {
+  margin: 2rem auto;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Ensure all content is centered */
+}
+
+ #profile div {
+  background-color: rgb(62, 191, 241);
+  margin: auto;
+  width: 90%;
+  padding-bottom: 12.5px;
+}
+
+/* Blue section with labels and values */
+.set-inside-div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* Left alignment by default */
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+  /* background-color: #d0e7f9; Blue background */
+  /* width: 100%; Ensure the section takes full width */
+  box-sizing: border-box; /* Make sure padding doesn't affect width */
+}
+
+/* Label styling (for Name, Email, etc.) */
+.set-inside-div label {
+  font-weight: bold;
+  color: #000000;
+  flex-basis: 200px; /* Ensuring labels have a fixed width */
+  text-align: left;
+  margin-right: 10px; /* Space between label and value */
+  white-space: nowrap; /* Prevent wrapping */
+}
+
+/* User details text styling */
+.userDetails {
+  font-size: 1rem;
+  color: #ffffff;
+  text-align: left; /* Left-align the text */
+  flex-grow: 1; /* Allow text to take the remaining space */
+  word-wrap: break-word; /* Ensure long text wraps properly */
+}
+
+/* Profile image download icon alignment */
+.userDetails img {
+  margin-left: 10px;
+  vertical-align: middle;
+  height: 24px;
+  width: 24px;
+}
+
+/* Media queries for responsiveness */
+@media screen and (max-width: 1500px) {
+  #profile {
+    padding: 2rem;
+  }
+
+  .set-inside-div {
+    justify-content: center; /* Center the content for medium-sized screens */
+    text-align: center; /* Ensure text inside blue section is centered */
+  }
+
+  .set-inside-div label,
+  .userDetails {
+    text-align: center;
+    flex-basis: auto; /* Allow label to take the remaining space */
+  }
+  
+}
+
+@media screen and (max-width: 769px) {
+  /* When screen width is less than 769px */
+  #profile {
+    width: 95%; /* Ensure full-width for smaller screens */
+  }
+
+  .set-inside-div {
+    flex-direction: column; /* Stack the label-value pairs vertically */
+    align-items: center;
+    width: 100%; /* Ensure the section takes full width */
+    padding: 10px; /* Decrease padding for small screens */
+  }
+
+  .set-inside-div label {
+    text-align: center; /* Center the label text */
+    margin-bottom: 8px; /* Spacing between label and value */
+  }
+
+  .userDetails {
+    text-align: center; /* Center the value text */
+  }
+}
+
+  
+  
+  
