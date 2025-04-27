@@ -224,3 +224,144 @@ padding: 15px;
    margin: auto;
    /* margin-left: 28rem; */
   }
+
+
+  @media only screen and (max-width: 768px) {
+    html {
+      font-size: 90%;
+    }
+  
+    .container,
+    .update-container,
+    .formData div,
+    .alert,
+    .alert-container {
+      width: 90%;
+      margin: 1rem auto;
+      padding: 1rem;
+    }
+  
+    .update-container input,
+    .formData {
+      width: 100%;
+      margin-left: 0;
+    }
+  
+    label {
+      width: 100%;
+      text-align: left;
+      padding-right: 0;
+      margin-bottom: 0.5rem;
+    }
+  
+    .updateForm {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+    }
+  
+    .form-check {
+      margin-left: 1rem;
+    }
+  
+    .form-check label {
+      margin-left: 0;
+    }
+  
+    .btn-login,
+    .btn-register,
+    .btn-reset {
+      width: 100%;
+      height: 45px;
+      margin: 0.5rem 0;
+    }
+  
+    .set-btn-Link {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+  
+    .forget-link {
+      font-size: 1rem;
+      text-align: center;
+    }
+  
+    .profilebtn {
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1rem;
+    }
+  
+    .userDetails {
+      font-size: 1rem;
+    }
+  
+    #loginDiv,
+    #forgetPassDiv,
+    #resetPassDiv {
+      margin-top: 5rem;
+      padding: 1rem;
+    }
+  
+    .set-inside-div {
+      grid-template-columns: 1fr;
+    }
+
+    .set-btn-Link {
+      display: grid;
+      grid-template-columns: 4fr 1fr;
+      padding-top: 25px;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .forget-link {
+      font-size: 1.1rem;
+      text-decoration: none;
+      cursor: pointer;
+      justify-self: end;
+      font-weight: bold;
+      white-space: nowrap; /* 🚀 This keeps the ? on same line */
+    }
+    
+    .btn-login {
+      height: 42.5px;
+      width: 7.5rem;
+      font-size: 1.1rem;
+    }
+  }
+  
+  
+  
+  /* 🎯 Mobile: 770px to 859px - Forget link below Login */
+  @media only screen and (max-width: 919px) {
+    .set-btn-Link {
+      display: flex !important;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+  
+    .forget-link {
+      font-size: 1.1rem;
+      text-align: center;
+      margin-top: 10px;
+      justify-self: center;
+      white-space: nowrap; /* 🚀 This keeps the ? on same line */
+    }
+  }
+
+  @media only screen and (min-width: 920px) {
+    .set-btn-Link {
+      display: grid;
+      grid-template-columns: 4fr 1fr;
+      gap: 1rem;
+    }
+  
+    .forget-link {
+      font-size: 1.1rem;
+      justify-self: end;
+      align-self: center;
+    }
+  }
