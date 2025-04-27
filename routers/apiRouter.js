@@ -48,11 +48,11 @@ async function sendMail({ to, subject, html, from = process.env.EMAIL_FROM }) {
   let testAccount = await nodemailer.createTestAccount();
 
   const transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
+    host: process.env.EMAIL_HOST,
     port: 587,
     auth: {
-      user: "winnifred.hermiston@ethereal.email",
-      pass: "tugaHG32Re5kWgAEhS",
+      user: process.env.USER,
+      pass: process.env.PASS,
     },
   });
 
@@ -233,11 +233,11 @@ async function sendMail({ to, subject, html, from = process.env.EMAIL_FROM }) {
   let testAccount = await nodemailer.createTestAccount();
 
   const transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
+    host: process.env.EMAIL_HOST,
     port: 587,
     auth: {
-      user: "winnifred.hermiston@ethereal.email",
-      pass: "tugaHG32Re5kWgAEhS",
+      user: process.env.USER,
+      pass: process.env.PASS,
     },
   });
 
@@ -391,11 +391,11 @@ async function sendMail({ to, subject, html, from = process.env.EMAIL_FROM }) {
   let testAccount = await nodemailer.createTestAccount();
 
   const transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
+    host: process.env.EMAIL_HOST,
     port: 587,
     auth: {
-      user: "winnifred.hermiston@ethereal.email",
-      pass: "tugaHG32Re5kWgAEhS",
+      user: process.env.USER,
+      pass: process.env.PASS,
     },
   });
   await transporter.sendMail({ from, to, subject, html });
@@ -513,11 +513,11 @@ async function sendMail({ to, subject, html, from = process.env.EMAIL_FROM }) {
   let testAccount = await nodemailer.createTestAccount();
 
   const transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
+    host: process.env.EMAIL_HOST
     port: 587,
     auth: {
-      user: "winnifred.hermiston@ethereal.email",
-      pass: "tugaHG32Re5kWgAEhS",
+      user: process.env.USER,
+      pass: process.env.PASS,
     },
   });
   await transporter.sendMail({ from, to, subject, html });
