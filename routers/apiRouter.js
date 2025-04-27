@@ -49,7 +49,7 @@ async function sendMail({ to, subject, html, from = process.env.EMAIL_FROM }) {
 
   const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
-    port: 587,
+    port: process.env.EMAIL_PORT,
     auth: {
       user: process.env.USER,
       pass: process.env.PASS,
@@ -234,7 +234,7 @@ async function sendMail({ to, subject, html, from = process.env.EMAIL_FROM }) {
 
   const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
-    port: 587,
+    port: process.env.EMAIL_PORT,
     auth: {
       user: process.env.USER,
       pass: process.env.PASS,
@@ -392,7 +392,7 @@ async function sendMail({ to, subject, html, from = process.env.EMAIL_FROM }) {
 
   const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST,
-    port: 587,
+    port: process.env.EMAIL_PORT,
     auth: {
       user: process.env.USER,
       pass: process.env.PASS,
@@ -514,7 +514,7 @@ async function sendMail({ to, subject, html, from = process.env.EMAIL_FROM }) {
 
   const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST
-    port: 587,
+    port: process.env.EMAIL_PORT,
     auth: {
       user: process.env.USER,
       pass: process.env.PASS,
