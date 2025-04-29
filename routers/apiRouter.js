@@ -27,17 +27,30 @@ router.use(cookie());
 
 ///////////////  File upload //////////////////
 
+// const storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     return cb(null, "./documents");
+//   },
+//   filename: function (req, file, cb) {
+//     return cb(
+//       null,
+//       `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`
+//     );
+//   },
+// });
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    return cb(null, "./documents");
+    cb(null, path.join(__dirname, "../documents"));
   },
   filename: function (req, file, cb) {
-    return cb(
-      null,
-      `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`
-    );
+    // Sanitize filename if needed
+    const originalName = path.basename(`${file.originalname}_${Date.now()}`);
+    cb(null, originalName);
+     // Save with original name
   },
 });
+
 // how to download uploaded file using multer in nodejs
 
 const upload = multer({ storage: storage });
@@ -162,16 +175,35 @@ router.get("/download/profile/:filename", auth, async (req, res, next) => {
     const result = await Register.findOne({ filename: req.params.filename });
     console.log(result.filename);
 
-    const x =
-      "/Projects/Full_Backend_Project-main/documents/" + result.filename;
-    res.download(x); // video[0].file.path is the absolute path to the file
-    const resp = await axios.get("http://localhost:3000/download/");
-    console.log(resp);
-    return res.status(201).render("profile", {
-      message: "file downloaded successfully",
+     if (!result) {
+      return res.status(404).send("File not found in database");
+    }
+
+    // const x =
+    //   "/Projects/Full_Backend_Project-main/documents/" + result.filename;
+    // res.download(x); // video[0].file.path is the absolute path to the file
+    // const resp = await axios.get("http://localhost:3000/download/");
+    // console.log(resp);
+
+    const filePath = path.join(__dirname, "../documents", result.filename); // ✅ dynamic path
+    console.log("File path:", filePath);
+
+      res.download(filePath, (err) => {
+      if (err) {
+        console.error("Download error:", err);
+        return res.status(500).send("File download failed");
+      }else{
+        return res.status(201).render("profile", {
+            message: "file downloaded successfully",
+          });
+      }
     });
+    //  return res.status(201).render("profile", {
+    //   message: "file downloaded successfully",
+    // });
   } catch (e) {
-    console.log(e);
+ console.error("Catch error:", e);
+    return res.status(500).send("Server error");
   }
 });
 
@@ -509,7 +541,7 @@ router.post("/otp", auth, async (req, res) => {
 
 ////////////// Send Email with user details, When user send udatable details to admin ///////////////
 
-async function sendMail({ to, subject, html, from = process.env.EMAIL_FROM }) {
+async function sendMail({ to, subject, html, from = process.env.EMAIL_FROM, attachments }) {
   let testAccount = await nodemailer.createTestAccount();
 
   const transporter = nodemailer.createTransport({
@@ -520,7 +552,7 @@ async function sendMail({ to, subject, html, from = process.env.EMAIL_FROM }) {
       pass: process.env.PASS,
     },
   });
-  await transporter.sendMail({ from, to, subject, html });
+  await transporter.sendMail({ from, to, subject, html, attachments });
   console.log("email sent sucessfully");
 }
 async function sendAdminEmail(
@@ -543,6 +575,12 @@ async function sendAdminEmail(
     subject: "Update Details",
     html: `<h4>Update details</h4>
              ${message}`,
+    attachments: [
+              {
+                filename: filename, // e.g. update_cv.pdf
+                path: path.join(__dirname, "../documents", filename), // correct file path
+              },
+            ],
   });
   console.log("email sent sucessfully");
   //   return username;
@@ -624,16 +662,35 @@ router.get("/download/:filename", admin_auth, async (req, res, next) => {
     const result = await Register.findOne({ filename: req.params.filename });
     console.log(result.filename);
 
-    const x =
-      "/Projects/Full_Backend_Project-main/documents/" + result.filename;
-    res.download(x); // video[0].file.path is the absolute path to the file
-    const resp = await axios.get("http://localhost:3000/download/");
-    console.log(resp);
-    return res.status(201).render("deshboard", {
-      message: "file downloaded successfully",
+    if (!result) {
+      return res.status(404).send("File not found in database");
+    }
+
+    // const x =
+    //   "/Projects/Full_Backend_Project-main/documents/" + result.filename;
+    // res.download(x); // video[0].file.path is the absolute path to the file
+    // const resp = await axios.get("http://localhost:3000/download/");
+    // console.log(resp);
+
+    const filePath = path.join(__dirname, "../documents", result.filename); // ✅ dynamic path
+    console.log("File path:", filePath);
+
+      res.download(filePath, (err) => {
+      if (err) {
+        console.error("Download error:", err);
+        return res.status(500).send("File download failed");
+      }else{
+        return res.status(201).render("profile", {
+            message: "file downloaded successfully",
+          });
+      }
     });
+    //  return res.status(201).render("profile", {
+    //   message: "file downloaded successfully",
+    // });
   } catch (e) {
-    console.log(e);
+    console.error("Catch error:", e);
+    return res.status(500).send("Server error");
   }
 });
 
