@@ -38,7 +38,6 @@ router.use(cookie());
 //     );
 //   },
 // });
-
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, path.join(__dirname, "../documents"));
@@ -50,7 +49,6 @@ const storage = multer.diskStorage({
      // Save with original name
   },
 });
-
 // how to download uploaded file using multer in nodejs
 
 const upload = multer({ storage: storage });
@@ -175,15 +173,18 @@ router.get("/download/profile/:filename", auth, async (req, res, next) => {
     const result = await Register.findOne({ filename: req.params.filename });
     console.log(result.filename);
 
-     if (!result) {
+    if (!result) {
       return res.status(404).send("File not found in database");
     }
-
+ 
     // const x =
     //   "/Projects/Full_Backend_Project-main/documents/" + result.filename;
     // res.download(x); // video[0].file.path is the absolute path to the file
     // const resp = await axios.get("http://localhost:3000/download/");
     // console.log(resp);
+    // return res.status(201).render("profile", {
+    //   message: "file downloaded successfully",
+    // });
 
     const filePath = path.join(__dirname, "../documents", result.filename); // ✅ dynamic path
     console.log("File path:", filePath);
@@ -201,8 +202,9 @@ router.get("/download/profile/:filename", auth, async (req, res, next) => {
     //  return res.status(201).render("profile", {
     //   message: "file downloaded successfully",
     // });
+
   } catch (e) {
- console.error("Catch error:", e);
+    console.error("Catch error:", e);
     return res.status(500).send("Server error");
   }
 });
@@ -582,6 +584,7 @@ async function sendAdminEmail(
               },
             ],
   });
+  // Console.log(__dirname);
   console.log("email sent sucessfully");
   //   return username;
 }
@@ -688,6 +691,7 @@ router.get("/download/:filename", admin_auth, async (req, res, next) => {
     //  return res.status(201).render("profile", {
     //   message: "file downloaded successfully",
     // });
+
   } catch (e) {
     console.error("Catch error:", e);
     return res.status(500).send("Server error");
@@ -714,6 +718,26 @@ router.post(
           message: "Email already exists",
         });
       } else {
+
+        // if admin give user name 
+
+      let userAdminName = req.body.username;
+      console.log(userAdminName);
+      if(userAdminName){
+      console.log(userAdminName);
+        const user = new Register({
+          name: req.body.name,
+          email: req.body.email,
+          phone: req.body.phone,
+          companyName: req.body.companyName,
+          filename: req.file.filename,
+          username: userAdminName,
+          password: hashPassword,
+        });
+        console.log(user);
+        const createUser = await user.save();
+        console.log(createUser)
+      }else{
         let name = req.body.name;
         // console.log(name);
         let names = name.split(" ");
@@ -735,7 +759,7 @@ router.post(
         console.log(user);
         const createUser = await user.save();
         console.log(createUser);
-
+      }
         return res.status(201).render("deshboard", {
           message: "user added Successfully",
         });
