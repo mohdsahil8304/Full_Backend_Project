@@ -18,7 +18,7 @@ app.use(cookie());
 const port = process.env.PORT || 3000;
 dotenv.config({ path: "./.env" });
 
-const oneDay = 1000 * 60;
+const oneDay = 1000 * 60 *60;
 
 //session middleware
 app.use(
@@ -31,6 +31,7 @@ app.use(
 );
 
 app.use(express.static(path.join(__dirname, "../public")));
+app.use('/documents', express.static(path.join(__dirname, '../documents')));
 app.set("view engine", "hbs");
 
 app.use(express.json());
