@@ -77,8 +77,7 @@ html{
 .formData div {
     background-color: rgb(62, 191, 241);
     margin: auto;
-    width:60%;
-    padding-bottom: 12.5px;
+    width:75%;
 }
 
 .btn-update{
@@ -230,7 +229,9 @@ padding: 15px;
     html {
       font-size: 90%;
     }
-  
+  .update-container{
+    height: 36rem;
+  }
     .container,
     .update-container,
     .formData div,
@@ -270,9 +271,8 @@ padding: 15px;
     .btn-login,
     .btn-register,
     .btn-reset {
-      width: 100%;
       height: 45px;
-      margin: 0.5rem 0;
+
     }
   
     .set-btn-Link {
@@ -322,7 +322,7 @@ padding: 15px;
       cursor: pointer;
       justify-self: end;
       font-weight: bold;
-      white-space: nowrap; /* 🚀 This keeps the ? on same line */
+      white-space: nowrap;
     }
     
     .btn-login {
@@ -361,28 +361,27 @@ padding: 15px;
   
     .forget-link {
       font-size: 1.1rem;
-      justify-self: end;
+      /* justify-self: end; */
       align-self: center;
     }
   }
+
+  
+       /* new CSS update for responsiveness */
 
 
 
   /* Profile outer form styling */
 #profile {
   margin: 2rem auto;
+  width: 90%;
+  background-color: #f9f9f9;
+  padding: 2rem;
   border-radius: 15px;
   box-shadow: 0 0 10px rgba(0,0,0,0.05);
   display: flex;
   flex-direction: column;
   align-items: center; /* Ensure all content is centered */
-}
-
- #profile div {
-  background-color: rgb(62, 191, 241);
-  margin: auto;
-  width: 90%;
-  padding-bottom: 12.5px;
 }
 
 /* Blue section with labels and values */
@@ -394,8 +393,8 @@ padding: 15px;
   margin-bottom: 20px;
   padding: 15px 0;
   border-bottom: 1px solid #ddd;
-  /* background-color: #d0e7f9; Blue background */
-  /* width: 100%; Ensure the section takes full width */
+  background-color: #d0e7f9; /* Blue background */
+  width: 100%; /* Ensure the section takes full width */
   box-sizing: border-box; /* Make sure padding doesn't affect width */
 }
 
@@ -412,7 +411,7 @@ padding: 15px;
 /* User details text styling */
 .userDetails {
   font-size: 1rem;
-  color: #ffffff;
+  color: hwb(0 86% 11%);
   text-align: left; /* Left-align the text */
   flex-grow: 1; /* Allow text to take the remaining space */
   word-wrap: break-word; /* Ensure long text wraps properly */
@@ -431,7 +430,9 @@ padding: 15px;
   #profile {
     padding: 2rem;
   }
-
+  .update-container{
+    height: 36rem;
+  }
   .set-inside-div {
     justify-content: center; /* Center the content for medium-sized screens */
     text-align: center; /* Ensure text inside blue section is centered */
@@ -442,7 +443,6 @@ padding: 15px;
     text-align: center;
     flex-basis: auto; /* Allow label to take the remaining space */
   }
-  
 }
 
 @media screen and (max-width: 769px) {
@@ -468,6 +468,343 @@ padding: 15px;
   }
 }
 
+/* Input fields should adjust automatically on smaller screens */
+
+/* Fix file input spacing */
+#myFile {
+  margin-left: 0;
+}
+
+/* Adjust update container width for smaller screens */ 
+ @media screen and (max-width: 992px) {
+  .update-container {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .alert-container {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .update-container {
+    padding: 15px;
+  }
+
+  .update-container label {
+    margin-left: 0;
+    text-align: left;
+  }
+
+  .form-check {
+    margin-left: 0;
+  }
+
+  .form-check label {
+    margin-left: 0;
+  }
+}
+
+
+.alert-container {
+  width: 31.5%;
+  margin: auto;
+}
+/* 🧩 Fix between 992px and 769px */
+@media screen and (max-width: 992px) {
+
+  .alert-container {
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+/* Default Styles */
+.update-container {
+  background-color: rgb(62, 191, 241);
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: sans-serif;
+  margin-top: 5rem;
+  width: 100%;
+  max-width: 50rem; /* Maximum width */
+  margin: 0 auto;  /* Center align */
+  padding: 30px;
+  border-radius: 25px;
+}
+
+/* Responsive Styles */
+@media only screen and (max-width: 992px) {
+  .update-container {
+    width: 90%; /* 90% width on smaller screens */
+    padding: 20px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  html {
+    font-size: 90%;
+  }
+
+  .update-container {
+    width: 90%;
+    margin: 1rem auto;
+    padding: 1rem;
+  }
+
+  .update-container input,
+  .formData {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  label {
+    width: 100%;
+    text-align: left;
+    padding-right: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .updateForm {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .form-check {
+    margin-left: 1rem;
+  }
+
+  .form-check label {
+    margin-left: 0;
+  }
+
+  .btn-login,
+  .btn-register,
+  .btn-reset {
+    height: 45px;
+  }
+
+  .set-btn-Link {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .forget-link {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .profilebtn {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1rem;
+  }
+
+  .userDetails {
+    font-size: 1rem;
+  }
+
+  #loginDiv,
+  #forgetPassDiv,
+  #resetPassDiv {
+    margin-top: 5rem;
+    padding: 1rem;
+  }
+
+  .set-inside-div {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+header {
+  width: 100vw;
+  background: #ececec;
+}
+
+.container {
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 992px) {
+  header {
+    width: 100%;
+  }
+}
+
+.full-width-bar {
+  margin-left: -9999px;
+  margin-right: -9999px;
+  padding: 0.25rem 9999px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+
+
+
+/* 768px se 577px tk ke changes ke liye */
+
+@media only screen and (max-width: 768px) {
+  
+  .update-container input {
+    width: 80%;
+  }
+    
+  .form-check input{
+    width: 15px;
+    margin-top: 5px;
+  } 
+  
+  .form-check {
+    margin-left: 15rem;
+    display: block;
+    min-height: 1.5rem;
+    padding-left: 1.5em;
+    margin-bottom: .125rem;
+  }
   
   
+  .form-check label {
+    margin: 0;
+    margin-top: -10px;
+    margin-inline: 25px;
+  }
+
+  #saveButton {
+    margin-left: 12.5rem;
+    margin-top: -40px;
+  }
+
+  }
+
   
+/* 768px se 577px tk ke changes for checkbox,update button in update form */
+@media only screen and (max-width: 768px) {
+  #updateButton{
+     margin-left: 12.5rem;
+    margin-top: -40px;
+  }
+
+  }
+
+  @media only screen and (max-width: 575px) {
+    .update-container {
+      padding: 20px;
+      background-color: rgb(62, 191, 241);
+      border-radius: 10px;
+      height: 55rem; 
+    }
+
+    .update-container .form-control {
+      width: 100%; 
+  }
+    .row.mb-3 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+  
+    .col-sm-2,
+    .col-sm-10 {
+      width: 100%;
+      text-align: center;
+      padding: 0;
+    }
+  
+    label.col-form-label {
+      margin-bottom: 8px;
+      text-align: center;
+      display: block;
+      width: 100%;
+    }
+  
+    .form-control {
+      width: 80%;
+      margin: 0 auto;
+      text-align: center;
+    }
+  
+    .form-check {
+      padding-top: 10px;
+      border-radius: 8px;
+      text-align: center;
+      margin-top: 15px;
+      margin-left: 1rem;
+    }
+    .form-check label{
+      margin-left: 40px;
+    }
+    .form-check input{
+      margin-left: 3rem;
+    }
+    .btn-update {
+      margin-top: 10px;
+      width: 25%;
+    }
+  
+    .alert-container {
+      padding: 10px;
+    }
+  
+    .alert {
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 10px;
+      position: relative;
+      word-wrap: break-word;
+    }
+  
+    .btn-close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1rem;
+    }
+  
+    }
+
+  /* Register form ke checkbox, label ke neeche bottom ki padding me changes ke liye  */
+
+.form-floating{
+   padding-bottom: 12.5px;
+  }
+ .input-group{
+  padding-bottom: 1rem;
+ }
+
+ /* 768px ke baad  Register form ke checkbox, label ke neeche bottom ki padding me changes ke liye   */
+
+ @media only screen and (max-width: 768px) {
+  #registerForm .form-floating{
+    padding: 0;
+    width: 85%;
+   }
+   .input-group .form-control{
+    height: 3rem;
+   }
+
+   #registerForm .form-check{
+    margin-top: -60px;
+  
+ }
+ 
+ #registerForm .col-sm-10{
+  margin-bottom: -5rem; 
+  margin-left: 50px;
+ }
+}
